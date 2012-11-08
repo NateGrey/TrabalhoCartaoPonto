@@ -1,5 +1,5 @@
 ﻿CREATE TABLE Funcionario(
-  codigoCartao INTEGER PRIMARY KEY,
+  codigoCartao VARCHAR(6) PRIMARY KEY,
   nome VARCHAR(100) NOT NULL,
   cpf VARCHAR(11) NOT NULL,
   endereco VARCHAR(100) NOT NULL,
@@ -8,7 +8,7 @@
 
 CREATE TABLE Frequencia(
   id SERIAL PRIMARY KEY,
-  cCartao INTEGER NOT NULL,
+  cCartao VARCHAR(6) NOT NULL,
   dia DATE NOT NULL,
   entrada TIME,
   intervalo TIME,
@@ -20,17 +20,24 @@ CREATE TABLE Frequencia(
 DROP TABLE Funcionario;
 DROP TABLE Frequencia;
 
-INSERT INTO Funcionario VALUES(123123,'Funcionario 01','11111111111','Rua 01','Cargo 01');
-INSERT INTO Funcionario VALUES(456456,'Funcionario 02','22222222222','Rua 02','Cargo 02');
-INSERT INTO Funcionario VALUES(789789,'Funcionario 03','33333333333','Rua 03','Cargo 03');
-INSERT INTO Funcionario VALUES(147147,'Funcionario 04','44444444444','Rua 04','Cargo 04');
-INSERT INTO Funcionario VALUES(258258,'Funcionario 05','55555555555','Rua 05','Cargo 05');
-INSERT INTO Funcionario VALUES(369369,'Funcionario 06','66666666666','Rua 06','Cargo 06');
+INSERT INTO Funcionario VALUES('123123','Funcionario 01','11111111111','Rua 01','Cargo 01');
+INSERT INTO Funcionario VALUES('456456','Funcionario 02','22222222222','Rua 02','Cargo 02');
+INSERT INTO Funcionario VALUES('789789','Funcionario 03','33333333333','Rua 03','Cargo 03');
+
 
 SELECT * FROM Funcionario;
 
+INSERT INTO Frequencia(cCartao,dia,entrada,intervalo,volta,saida) VALUES('123123','2012-10-31','07:58:12','12:00:01','13:59:14','18:01:53');
+INSERT INTO Frequencia(cCartao,dia,entrada,intervalo,volta,saida) VALUES('456456','2012-10-31','08:01:14','11:59:11','14:00:14','17:56:32');
+INSERT INTO Frequencia(cCartao,dia,entrada,intervalo,volta,saida) VALUES('789789','2012-10-31','07:59:50','12:05:33','13:57:41','18:00:26');
+INSERT INTO Frequencia(cCartao,dia,entrada,intervalo,volta,saida) VALUES('123123','2012-11-01','07:58:52','12:01:41','13:59:59','18:00:23');
+INSERT INTO Frequencia(cCartao,dia,entrada,intervalo,volta,saida) VALUES('456456','2012-11-01','07:55:00','12:04:33','13:55:15','18:04:45');
+INSERT INTO Frequencia(cCartao,dia,entrada,intervalo,volta,saida) VALUES('789789','2012-11-01','08:00:02','11:59:09','14:00:10','18:00:14');
 
-CREATE OR REPLACE FUNCTION Dias_Trabalhados(INTEGER,INTEGER) RETURNS INTEGER AS
+SELECT * FROM Frequencia;
+
+
+CREATE OR REPLACE FUNCTION Dias_Trabalhados(VARCHAR(6),INTEGER) RETURNS INTEGER AS
 $$
   DECLARE
     achou INTEGER;
@@ -67,8 +74,8 @@ $$
 $$
 LANGUAGE 'PLPGSQL';
 
-SELECT Dias_Trabalhados(123123,3);
-SELECT * FROM Frequencia WHERE cCartao = 123123;
+SELECT Dias_Trabalhados('123123',3);
+SELECT * FROM Frequencia WHERE cCartao = '123123';
 
 select extract(dow from now());
 

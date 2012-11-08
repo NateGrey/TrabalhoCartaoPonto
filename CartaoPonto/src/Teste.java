@@ -10,9 +10,6 @@ public class Teste {
 
 		Connection con = DriverManager.getConnection(
 				"jdbc:postgresql://localhost:5432/CartaoPonto", "postgres", "senacrs");
-		
-		//Connection con = DriverManager.getConnection(
-				//"jdbc:postgresql://localhost:5432/CartaoPonto", "postgres", "lionheart");
 
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT * FROM Funcionario");
