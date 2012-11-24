@@ -1,21 +1,29 @@
 package swing;
+import java.awt.CardLayout;
+
 import javax.swing.*;  
 
 @SuppressWarnings("serial")
-public class JConsultarFrequencia extends JPanel{
+public class JRegistrarFrequenciaPanel extends JPanel{
 	
-	public JConsultarFrequencia(){
+	public JRegistrarFrequenciaPanel(JPanel principal, CardLayout cards){
 		add(new JLabel("Numero Cartão"));
-		add(new JTextField(8));
-		add(new JButton("Consultar"));
+		JTextField valor = new JTextField(8);
+		add(valor);
+		add(new JButton("Registrar"));
+		//add(new JButton(new JRegistrarFrequenciaAction(principal, cards, valor)));
 		add(new JButton("Cancelar"));
 	}
 	
+	public JRegistrarFrequenciaPanel(){
+		this(null,null);
+	}
+	
 	private static void painel(){
-		JFrame frame = new JFrame("Consulta Frequencia do Funcionário");
+		JFrame frame = new JFrame("Registrar Frequencia do Funcionário");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JPanel painel = new JConsultarFrequencia();
+		JPanel painel = new JRegistrarFrequenciaPanel();
 		frame.getContentPane().add(painel);
 
 		frame.pack();
