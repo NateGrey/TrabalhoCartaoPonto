@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class FrequenciaDAO {
 	
 	private static final String selectListaFrequencia = "SELECT * FROM Frequencia WHERE cCartao = ?";
+	private static final String selectCodigoFuncionario = "SELECT codigoCartao FROM Funcionario WHERE codigoCartao = ?";
 	private static final String selectControlaPonto = "SELECT * FROM Frequencia WHERE cCartao = ? and dia = CURRENT_DATE";
 	private static final String insertRegistraPonto = "INSERT INTO Frequencia (cCartao,dia,entrada) VALUES (?,CURRENT_DATE,CURRENT_TIME(0))";
 	private static final String updateAtualizaPontoInter = "UPDATE Frequencia SET intervalo = CURRENT_TIME(0) WHERE cCartao = ? AND dia = CURRENT_DATE";
@@ -17,7 +18,7 @@ public class FrequenciaDAO {
 	private static final String updateAtualizaPontoSaida = "UPDATE Frequencia SET saida = CURRENT_TIME(0) WHERE cCartao = ? AND dia = CURRENT_DATE";
 	
 	
-	public void controlaPonto(String cCartao, String dia, String update){
+	public boolean controlaPonto(String cCartao, String dia, String update){
 		
 		if (cCartao == null) {
 			throw new IllegalArgumentException("O número do cartão não pode ser nulo!");
@@ -55,6 +56,7 @@ public class FrequenciaDAO {
 							atualizaPonto(cCartao, updateAtualizaPontoSaida);
 						}else{
 							System.out.println("O funcionario já fechou seu horario!");
+							return false;
 						}
 					}
 				}
@@ -64,9 +66,9 @@ public class FrequenciaDAO {
 			e.printStackTrace();
 			// FIXME: comunicar erro ao programa
 		}
+		return true;
 	}
-	
-	
+		
 	private void registraPonto(String cCartao){
 		
 		try {
@@ -88,7 +90,6 @@ public class FrequenciaDAO {
 		// FIXME: fechar conexões
 		
 	}
-	
 	
 	private void atualizaPonto(String cCartao, String sql){
 		
@@ -112,7 +113,6 @@ public class FrequenciaDAO {
 			e.printStackTrace();
 		}
 	}
-	
 	
 	public ArrayList<Frequencia> listaFrequencia(String cCartao){
 		
@@ -151,6 +151,35 @@ public class FrequenciaDAO {
 		
 		// FIXME: fechar conexões
 	} 
+	
+	
+	public boolean isFuncionario(String codigoCartao){
+		if (codigoCartao == null) {
+			throw new IllegalArgumentException("O número do cartão não pode ser nulo!");
+		}
+		
+		try {
+			Connection con = DriverManager.getConnection(
+			"jdbc:postgresql://localhost:5432/CartaoPonto", "postgres", "lionheart");
+
+			PreparedStatement stmt = con.prepareStatement(selectCodigoFuncionario);
+			stmt.clearParameters();
+			stmt.setString(1, codigoCartao);
+			ResultSet rs = stmt.executeQuery();
+			
+			if (!rs.next()) {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			// FIXME: comunicar erro ao programa
+		}
+		
+		return true;
+		
+		// FIXME: fechar conexões
+	}
 	
 
 }

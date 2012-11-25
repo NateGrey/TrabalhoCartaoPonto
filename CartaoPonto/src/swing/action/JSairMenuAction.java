@@ -13,6 +13,7 @@ public class JSairMenuAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.out.println("Saindo...");
 		System.exit(0);
 	}
 }

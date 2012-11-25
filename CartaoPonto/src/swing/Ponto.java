@@ -24,8 +24,6 @@ public class Ponto {
         JFrame frame = new JFrame("Controle de Cartão Ponto");
         
         CardLayout cards = new CardLayout();
-		//TODO: utilizar card layout para combinar telas.
-		//http://docs.oracle.com/javase/tutorial/uiswing/layout/card.html
         
         JPanel principal = new JPanel(cards);
         
@@ -66,6 +64,7 @@ public class Ponto {
         frame.setJMenuBar(menubar);
         
         frame.setMinimumSize(new Dimension(400,200));
+        //frame.setMaximumSize(new Dimension(800,600));
 
         frame.pack();
         frame.setVisible(true);

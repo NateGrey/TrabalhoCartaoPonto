@@ -3,6 +3,8 @@ import java.awt.CardLayout;
 
 import javax.swing.*;  
 
+import swing.action.JRegistrarFrequenciaPanelAction;
+
 @SuppressWarnings("serial")
 public class JRegistrarFrequenciaPanel extends JPanel{
 	
@@ -10,8 +12,7 @@ public class JRegistrarFrequenciaPanel extends JPanel{
 		add(new JLabel("Numero Cartão"));
 		JTextField valor = new JTextField(8);
 		add(valor);
-		add(new JButton("Registrar"));
-		//add(new JButton(new JRegistrarFrequenciaAction(principal, cards, valor)));
+		add(new JButton(new JRegistrarFrequenciaPanelAction(principal, cards, valor)));
 		add(new JButton("Cancelar"));
 	}
 	

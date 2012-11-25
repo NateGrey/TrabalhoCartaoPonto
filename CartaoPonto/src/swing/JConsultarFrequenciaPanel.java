@@ -1,6 +1,4 @@
 package swing;
-import Ponto.Frequencia;
-import Ponto.FrequenciaDAO;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -9,6 +7,11 @@ import java.util.ArrayList;
 import javax.swing.*;  
 import javax.swing.table.DefaultTableModel;
 
+import Ponto.Frequencia;
+import Ponto.FrequenciaDAO;
+
+import swing.action.JConsultarFrequenciaPanelAction;
+
 @SuppressWarnings("serial")
 public class JConsultarFrequenciaPanel extends JPanel{
 	
@@ -16,15 +19,14 @@ public class JConsultarFrequenciaPanel extends JPanel{
 		add(new JLabel("Numero Cartão"));
 		JTextField valor = new JTextField(8);
 		add(valor);
-		add(new JButton("Consultar"));
-		//add(new JButton(new JConsultarFrequenciaAction(principal, cards, valor)));
+		JConsultarFrequenciaPanelAction consultar = new JConsultarFrequenciaPanelAction(principal, cards, valor);
+		add(new JButton(consultar));
 		add(new JButton("Cancelar"));
 		
-	    
 	    FrequenciaDAO fre = new FrequenciaDAO();
 	    
 	    ArrayList<Frequencia> lista = new ArrayList<Frequencia>();
-	    lista.addAll(fre.listaFrequencia("123123"));
+	    lista.addAll(fre.listaFrequencia("456456"));
 	    
 	    String[][] dados = new String[lista.size()][];  
 	    int i = 0; 
@@ -33,17 +35,16 @@ public class JConsultarFrequenciaPanel extends JPanel{
 	      dados[i] = new String[] { f.getCartao(),f.getDia().toString(),f.getEntrada().toString(),
 	    		  f.getIntervalo().toString(),f.getVolta().toString(),f.getSaida().toString()};  
 	      i += 1;  
-	    } 
+	    }
 	    
 	    String[] coluna = new String[] {"Cartao","Data","Entrada","Intervalo","Volta","Saida"};
 	    
 	    DefaultTableModel exibir = new DefaultTableModel(dados,coluna); 
-	    //add(new JTable(exibir));
 	    
 	    JTable table=new JTable(exibir);  
 	    JScrollPane scrollpane = new JScrollPane(table);      
 	      
-	    //scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);    
+	    scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);    
 	    scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);    
 	    this.add(scrollpane, BorderLayout.CENTER);
 	}
@@ -69,7 +70,5 @@ public class JConsultarFrequenciaPanel extends JPanel{
             	painel();
             }
         });
-
 	}
-
 }
