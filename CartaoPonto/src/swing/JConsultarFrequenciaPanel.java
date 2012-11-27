@@ -28,13 +28,30 @@ public class JConsultarFrequenciaPanel extends JPanel{
 	    ArrayList<Frequencia> lista = new ArrayList<Frequencia>();
 	    lista.addAll(fre.listaFrequencia("456456"));
 	    
-	    String[][] dados = new String[lista.size()][];  
+	    String[][] dados = new String[lista.size()][];
+	    String intervalo, volta, saida;
 	    int i = 0; 
 	    
-	    for (Frequencia f: lista) {  
-	      dados[i] = new String[] { f.getCartao(),f.getDia().toString(),f.getEntrada().toString(),
-	    		  f.getIntervalo().toString(),f.getVolta().toString(),f.getSaida().toString()};  
-	      i += 1;  
+	    for (Frequencia f: lista) {
+	    	if (f.getIntervalo() == null){
+	    		intervalo = "--:--:--";
+	    	}else{
+	    		intervalo = f.getIntervalo().toString(); 
+	    	}
+	    	if (f.getVolta() == null){
+	    		volta = "--:--:--";
+	    	}else{
+	    		volta = f.getVolta().toString(); 
+	    	}
+	    	if (f.getSaida() == null){
+	    		saida = "--:--:--";
+	    	}else{
+	    		saida = f.getSaida().toString(); 
+	    	}
+	    	
+	        dados[i] = new String[] { f.getCartao(),f.getDia().toString(),f.getEntrada().toString(),
+	        						intervalo,volta,saida};  
+	        i += 1;  
 	    }
 	    
 	    String[] coluna = new String[] {"Cartao","Data","Entrada","Intervalo","Volta","Saida"};

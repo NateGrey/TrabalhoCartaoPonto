@@ -64,9 +64,9 @@ public class Frequencia {
 	}
 
 	public void setIntervalo(Time intervalo) {
-		if (intervalo == null) {
+		/*if (intervalo == null) {
 			throw new IllegalArgumentException("A hora do intervalo não pode ser nulo!");
-		}
+		}*/
 		
 		this.intervalo = intervalo;
 	}
@@ -76,9 +76,9 @@ public class Frequencia {
 	}
 
 	public void setVolta(Time volta) {
-		if (volta == null) {
+		/*if (volta == null) {
 			throw new IllegalArgumentException("A hora da volta não pode ser nulo!");
-		}
+		}*/
 		
 		this.volta = volta;
 	}
@@ -88,9 +88,9 @@ public class Frequencia {
 	}
 
 	public void setSaida(Time saida) {
-		if (saida == null) {
+		/*if (saida == null) {
 			throw new IllegalArgumentException("A hora da saida não pode ser nulo!");
-		}
+		}*/
 		
 		this.saida = saida;
 	}

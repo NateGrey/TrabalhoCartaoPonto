@@ -12,7 +12,7 @@ public class Main {
 		//fre.controlaPonto("123123", dia, update);
 		
 		System.out.println("Tabela da Frequencia");
-		System.out.println(fre.listaFrequencia("123123"));
+		System.out.println(fre.listaFrequencia("456456"));
 		
 	    //System.out.println(new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date())); 
 		
