@@ -26,10 +26,8 @@ public class Ponto {
         CardLayout cards = new CardLayout();
         
         JPanel principal = new JPanel(cards);
-        
         JPanel registrar = new JRegistrarFrequenciaPanel(principal, cards);
         JPanel consultar = new JConsultarFrequenciaPanel(principal, cards);
-		
         JPanel vazio = new JPanel();
 		JLabel label = new JLabel("Controle de Cartão Ponto - Tela Inicial");
 		vazio.add(label);
@@ -39,9 +37,7 @@ public class Ponto {
 		principal.add(consultar, JConsultarFrequenciaMenuAction.CONSULTAR1);
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
         frame.setIconImage(new ImageIcon("icon.png").getImage());
-		
         frame.getContentPane().add(principal);
         
         JMenuBar menubar = new JMenuBar();
@@ -62,10 +58,8 @@ public class Ponto {
 		help.add(aboutAction);
         
         frame.setJMenuBar(menubar);
-        
-        frame.setMinimumSize(new Dimension(400,200));
+        frame.setMinimumSize(new Dimension(800,600));
         //frame.setMaximumSize(new Dimension(800,600));
-
         frame.pack();
         frame.setVisible(true);
     }

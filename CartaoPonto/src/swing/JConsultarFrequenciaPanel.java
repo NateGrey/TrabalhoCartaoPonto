@@ -15,6 +15,7 @@ import swing.action.JConsultarFrequenciaPanelAction;
 @SuppressWarnings("serial")
 public class JConsultarFrequenciaPanel extends JPanel{
 	
+	@SuppressWarnings("deprecation")
 	public JConsultarFrequenciaPanel(JPanel principal, CardLayout cards){
 		add(new JLabel("Numero Cartão"));
 		JTextField valor = new JTextField(8);
@@ -27,11 +28,13 @@ public class JConsultarFrequenciaPanel extends JPanel{
 	    
 	    ArrayList<Frequencia> lista = new ArrayList<Frequencia>();
 	    lista.addAll(fre.listaFrequencia("456456"));
+	    //lista.addAll(fre.listaFrequencia(consultar.getValor()));
+	    System.out.println(lista);
 	    
 	    String[][] dados = new String[lista.size()][];
 	    String intervalo, volta, saida;
 	    int i = 0; 
-	    
+	
 	    for (Frequencia f: lista) {
 	    	if (f.getIntervalo() == null){
 	    		intervalo = "--:--:--";
@@ -57,10 +60,10 @@ public class JConsultarFrequenciaPanel extends JPanel{
 	    String[] coluna = new String[] {"Cartao","Data","Entrada","Intervalo","Volta","Saida"};
 	    
 	    DefaultTableModel exibir = new DefaultTableModel(dados,coluna); 
-	    
-	    JTable table=new JTable(exibir);  
-	    JScrollPane scrollpane = new JScrollPane(table);      
-	      
+	    exibir.fireTableDataChanged();
+	    JTable table=new JTable(exibir);
+	    table.enable(false);
+	    JScrollPane scrollpane = new JScrollPane(table);         
 	    scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);    
 	    scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);    
 	    this.add(scrollpane, BorderLayout.CENTER);
@@ -73,10 +76,8 @@ public class JConsultarFrequenciaPanel extends JPanel{
 	private static void painel(){
 		JFrame frame = new JFrame("Consulta Frequencia do Funcionário");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		JPanel painel = new JConsultarFrequenciaPanel();
 		frame.getContentPane().add(painel);
-
 		frame.pack();
 		frame.setVisible(true);
 	}

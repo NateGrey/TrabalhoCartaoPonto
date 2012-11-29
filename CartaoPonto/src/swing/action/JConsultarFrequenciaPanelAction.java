@@ -60,4 +60,8 @@ public class JConsultarFrequenciaPanelAction extends AbstractAction {
 		}*/
 
 	}
+	
+	public String getValor(){
+		return this.valor.getText();
+	}
 }
