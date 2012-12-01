@@ -32,7 +32,7 @@ public class FrequenciaDAO {
 		
 		try {
 			Connection con = DriverManager.getConnection(
-			"jdbc:postgresql://localhost:5432/CartaoPonto", "postgres", "senacrs");
+			"jdbc:postgresql://localhost:5432/CartaoPonto", "postgres", "lionheart");
 
 			PreparedStatement stmt = con.prepareStatement(selectControlaPonto);
 			stmt.clearParameters(); 
@@ -73,7 +73,7 @@ public class FrequenciaDAO {
 		
 		try {
 			Connection con = DriverManager.getConnection(
-					"jdbc:postgresql://localhost:5432/CartaoPonto", "postgres", "senacrs");
+					"jdbc:postgresql://localhost:5432/CartaoPonto", "postgres", "lionheart");
 
 			PreparedStatement stmt = con.prepareStatement(insertRegistraPonto);
 			stmt.setString(1, cCartao);
@@ -99,7 +99,7 @@ public class FrequenciaDAO {
 		
 		try {
 			Connection con = DriverManager.getConnection(
-					"jdbc:postgresql://localhost:5432/CartaoPonto", "postgres", "senacrs");
+					"jdbc:postgresql://localhost:5432/CartaoPonto", "postgres", "lionheart");
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, cCartao);
@@ -124,7 +124,7 @@ public class FrequenciaDAO {
 		
 		try {
 			Connection con = DriverManager.getConnection(
-			"jdbc:postgresql://localhost:5432/CartaoPonto", "postgres", "senacrs");
+			"jdbc:postgresql://localhost:5432/CartaoPonto", "postgres", "lionheart");
 
 			PreparedStatement stmt = con.prepareStatement(selectListaFrequencia);
 			stmt.clearParameters();
@@ -160,7 +160,7 @@ public class FrequenciaDAO {
 		
 		try {
 			Connection con = DriverManager.getConnection(
-			"jdbc:postgresql://localhost:5432/CartaoPonto", "postgres", "senacrs");
+			"jdbc:postgresql://localhost:5432/CartaoPonto", "postgres", "lionheart");
 
 			PreparedStatement stmt = con.prepareStatement(selectCodigoFuncionario);
 			stmt.clearParameters();

@@ -4,20 +4,30 @@ import java.awt.CardLayout;
 import javax.swing.*;  
 
 import swing.action.JRegistrarFrequenciaPanelAction;
+import swing.action.JRegistrarFrequenciaPanelCancelAction;
 
 @SuppressWarnings("serial")
 public class JRegistrarFrequenciaPanel extends JPanel{
 	
+	private JTextField valor;
+	
 	public JRegistrarFrequenciaPanel(JPanel principal, CardLayout cards){
 		add(new JLabel("Numero Cartão"));
-		JTextField valor = new JTextField(8);
+		valor = new JTextField(8);
 		add(valor);
 		add(new JButton(new JRegistrarFrequenciaPanelAction(principal, cards, valor)));
-		add(new JButton("Cancelar"));
+		add(new JButton(new JRegistrarFrequenciaPanelCancelAction(principal, cards)));
 	}
 	
 	public JRegistrarFrequenciaPanel(){
 		this(null,null);
+	}
+	
+	@Override
+	public void setVisible(boolean aFlag) {
+		super.setVisible(aFlag);
+		System.out.printf("JRegistrarFrequenciaPanel::setVisible %b\n", aFlag);
+		this.valor.setText("");
 	}
 	
 	private static void painel(){

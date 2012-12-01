@@ -12,8 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import swing.Ponto;
-
 
 @SuppressWarnings("serial")
 public class JConsultarFrequenciaPanelAction extends AbstractAction {
@@ -34,7 +32,7 @@ public class JConsultarFrequenciaPanelAction extends AbstractAction {
 	
 		FrequenciaDAO fre = new FrequenciaDAO();
 	    ArrayList<Frequencia> lista = new ArrayList<Frequencia>();
-	    lista.addAll(fre.listaFrequencia(valor.getText()));
+	    lista.addAll(fre.listaFrequencia(this.valor.getText()));
 		
 	   if (lista.isEmpty()) {
 			System.out.println("Funcionario não encontrado!");
@@ -44,24 +42,11 @@ public class JConsultarFrequenciaPanelAction extends AbstractAction {
 
 		}else{
 			System.out.println(lista);
-			String[][] dados = new String[lista.size()][];  
-		    int i = 0; 
-		    
-		    for (Frequencia f: lista) {  
-		      dados[i] = new String[] { f.getCartao(),f.getDia().toString(),f.getEntrada().toString(),
-		    		  f.getIntervalo().toString(),f.getVolta().toString(),f.getSaida().toString()};  
-		      i += 1;  
-		    }
-		    
-		   String[] coluna = new String[] {"Cartao","Data","Entrada","Intervalo","Volta","Saida"};
 		}
-		/*if (principal != null) {
-			cards.show(principal, Ponto.PRINCIPAL);
-		}*/
-
 	}
 	
 	public String getValor(){
 		return this.valor.getText();
 	}
+
 }

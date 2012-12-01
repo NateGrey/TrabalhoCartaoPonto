@@ -58,7 +58,8 @@ public class Ponto {
 		help.add(aboutAction);
         
         frame.setJMenuBar(menubar);
-        frame.setMinimumSize(new Dimension(800,600));
+        //frame.setSize(new Dimension (200,200));
+        frame.setMinimumSize(new Dimension(800,400));
         //frame.setMaximumSize(new Dimension(800,600));
         frame.pack();
         frame.setVisible(true);
