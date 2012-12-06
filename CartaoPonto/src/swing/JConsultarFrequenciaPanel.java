@@ -16,7 +16,7 @@ import swing.action.JConsultarFrequenciaPanelCloseAction;
 @SuppressWarnings("serial")
 public class JConsultarFrequenciaPanel extends JPanel{
 	
-	private static final String[] coluna = new String[] {"Cartao","Data","Entrada","Intervalo","Volta","Saida"};
+	private static final String[] coluna = new String[] {"Cartão","Data","Entrada","Intervalo","Volta","Saída"};
 	private  JTable table;
 	private DefaultTableModel exibir;
 	private JScrollPane scrollpane;
@@ -24,11 +24,11 @@ public class JConsultarFrequenciaPanel extends JPanel{
 	
 	//@SuppressWarnings("deprecation")
 	public JConsultarFrequenciaPanel(JPanel principal, CardLayout cards){
-		add(new JLabel("Numero Cartão"));
+		add(new JLabel("Número Cartão"));
 		valor = new JTextField(8);
-		valor.setText("456456");
+		valor.setText("");
 		add(valor);
-		JConsultarFrequenciaPanelAction consultar = new JConsultarFrequenciaPanelAction(principal, cards, valor);
+		JConsultarFrequenciaPanelAction consultar = new JConsultarFrequenciaPanelAction(principal, cards, valor, this);
 		add(new JButton(consultar));
 		add(new JButton(new JConsultarFrequenciaPanelCloseAction(principal, cards)));
 		
@@ -37,7 +37,7 @@ public class JConsultarFrequenciaPanel extends JPanel{
 		scrollpane = new JScrollPane();
 		
 		scrollpane = new JScrollPane(table);         
-	    scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);    
+	    //scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);    
 	    scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);    
 	    this.add(scrollpane, BorderLayout.CENTER);	
 	}
@@ -46,7 +46,6 @@ public class JConsultarFrequenciaPanel extends JPanel{
 		this(null,null);
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public void setVisible(boolean aFlag) {
 		super.setVisible(aFlag);
@@ -56,6 +55,14 @@ public class JConsultarFrequenciaPanel extends JPanel{
 		}
 		System.out.printf("JRegistrarFrequenciaPanel::setVisible %b\n", aFlag);
 		
+		refresh();
+	    
+	    //System.out.println(this.valor.getText());
+	    //this.valor.setText("");
+	}
+
+	@SuppressWarnings("deprecation")
+	public void refresh() {
 		FrequenciaDAO fre = new FrequenciaDAO();
 	    
 	    ArrayList<Frequencia> lista = new ArrayList<Frequencia>();
@@ -90,13 +97,10 @@ public class JConsultarFrequenciaPanel extends JPanel{
 	    exibir.setDataVector(dados,coluna); 
 	    table.setModel(exibir);
 	    table.enable(false);
-	    
-	    //System.out.println(this.valor.getText());
-	    //this.valor.setText("");
 	}
 	
 	private static void painel(){
-		JFrame frame = new JFrame("Consulta Frequencia do Funcionário");
+		JFrame frame = new JFrame("Consulta Frequência do Funcionário");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel painel = new JConsultarFrequenciaPanel();
 		frame.getContentPane().add(painel);

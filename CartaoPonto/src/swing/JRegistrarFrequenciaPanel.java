@@ -12,7 +12,7 @@ public class JRegistrarFrequenciaPanel extends JPanel{
 	private JTextField valor;
 	
 	public JRegistrarFrequenciaPanel(JPanel principal, CardLayout cards){
-		add(new JLabel("Numero Cartão"));
+		add(new JLabel("Número Cartão"));
 		valor = new JTextField(8);
 		add(valor);
 		add(new JButton(new JRegistrarFrequenciaPanelAction(principal, cards, valor)));
@@ -31,7 +31,7 @@ public class JRegistrarFrequenciaPanel extends JPanel{
 	}
 	
 	private static void painel(){
-		JFrame frame = new JFrame("Registrar Frequencia do Funcionário");
+		JFrame frame = new JFrame("Registrar Frequência do Funcionário");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel painel = new JRegistrarFrequenciaPanel();

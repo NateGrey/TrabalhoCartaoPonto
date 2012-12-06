@@ -31,7 +31,7 @@ public class JRegistrarFrequenciaPanelAction extends AbstractAction {
 		FrequenciaDAO fre = new FrequenciaDAO();
 		
 		if (!fre.isFuncionario(valor.getText())){
-			System.out.println("Funcionario não encontrado!");
+			System.out.println("Funcionário não encontrado!");
 			JOptionPane.showMessageDialog(principal.getRootPane(),
 					"Funcionario não encontrado!", "Operação cancelada",
 					JOptionPane.ERROR_MESSAGE);
@@ -42,9 +42,9 @@ public class JRegistrarFrequenciaPanelAction extends AbstractAction {
 		
 			if(!fre.controlaPonto(valor.getText(), dia, update))
 			{
-				System.out.println("O funcionario já fechou seu horario!");
+				System.out.println("O funcionário já fechou seu horario!");
 				JOptionPane.showMessageDialog(principal.getRootPane(),
-						"O funcionario já fechou seu horario!", "Operação cancelada",
+						"O funcionário já fechou seu horario!", "Operação cancelada",
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}
